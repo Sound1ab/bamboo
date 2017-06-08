@@ -31,13 +31,15 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		height: 90px;
+		align-items: center;
 
 		.logo {
 			flex-grow: 1;
 			display: flex;
 			flex-direction: row;
 			justify-content: flex-start;
-			margin: 60px 0 0 80px;
+			margin-left: 80px;
 		}
 
 		ul {
@@ -45,7 +47,7 @@
 			display: flex;
 			flex-direction: row;
 			justify-content: flex-end;
-			margin: 60px 80px 0 0;
+			margin-right: 80px;
 
 			li {
 				padding-right: 10px;
