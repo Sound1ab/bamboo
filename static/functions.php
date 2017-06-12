@@ -19,6 +19,7 @@ class Main {
 		$GLOBALS['content_width'] = 640;
 	}
 
+
 	public function enqueue_script() {
 		global $theme_version;
 
@@ -46,6 +47,12 @@ class Main {
     wp_enqueue_script('app-manifest');
     wp_enqueue_script('app-vendor');
     wp_enqueue_script('app-bundle');
+
+    // Enable the option show in rest
+    add_filter( 'acf/rest_api/field_settings/show_in_rest', '__return_true' );
+
+    // Enable the option edit in rest
+    add_filter( 'acf/rest_api/field_settings/edit_in_rest', '__return_true' );
 	}
 }
 

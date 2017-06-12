@@ -1,16 +1,35 @@
-<template>
-	<div id="app">
-		<Header></Header>
-	</div>
-</template>
-
 <script>
 	import Header from './components/header/header'
+	import fetch from 'isomorphic-fetch'
 
 	export default {
 		name: 'app',
 		components: {
 			Header,
+		},
+		data () {
+			return {
+				apiResponse: [],
+			}
+		},
+		beforeCreate () {
+			fetch('//phillipparker.tech/wp-json/acf/v3/posts/')
+				.then(response => {
+					if (response.status >= 400) {
+						throw new Error('Bad response from server')
+					}
+					return response.json()
+				})
+				.then(response => {
+					this.apiResponse = response
+				})
+		},
+		render (h) {
+			return (
+				<div class="app">
+					{this.apiResponse.length > 0 ? <Header data={this.apiResponse} /> : null}
+				</div>
+			)
 		},
 	}
 </script>
@@ -60,7 +79,7 @@
 		border-spacing: 0;
 	}
 
-	#app {
+	.app {
 		font-family: 'Avenir', Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
