@@ -1,67 +1,54 @@
 <script type="text/babel">
-	import NavBar from './navbar.vue'
-
 	export default {
 		name: 'header',
-		components: {
-			NavBar,
-		},
 		props: ['data'],
 		data () {
 			return {
 				id: 10,
 				postData: [],
-			}
+			};
 		},
 		beforeMount () {
-			console.log('this.data', this.data)
 			let refinedData = this.data.filter(post => {
-				return post.id === this.id
-			})
-			console.log('refinedData', refinedData)
-			this.postData = refinedData[0].acf
+				return post.id === this.id;
+			});
+			this.postData = refinedData[0].acf;
 		},
-//		methods: {
-//
-//		},
 		render (h) {
 			return (
 				<div class="header">
-					<NavBar />
-					<div class="big-logo">
-						<div>
-							<img src={this.postData.pic}/>
-						</div>
-						<h1>BAM • BOO</h1>
+					<div class="header__container">
+						<img class="header__logo" src={this.postData.logo}/>
 					</div>
+					<h1 class="header__floating-title">{this.postData.floating_title}</h1>
 				</div>
-			)
+			);
 		},
-	}
+	};
 </script>
 
-<style lang="scss" rel="text/scss">
+<style lang="scss" type="text/scss">
+	@import "~styles/main.scss";
+
 	.header {
-		position: relative;
-		height: 550px;
-		background-color: aliceblue;
-	}
+		padding: em(100, $fzBase) 0 0 0;
+		background-color: white;
 
-	.big-logo {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-	}
+		&__container {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+		}
 
-	h1 {
-		font-size: 105px;
-		font-weight: bold;
-		margin-top: 25px;
-		color: white;
+		&__logo {
+			width: 189px;
+			height: auto;
+		}
+
+		&__floating-title {
+			font-size: em(105, $fzBase);
+			font-weight: bold;
+			color: black;
+		}
 	}
 </style>

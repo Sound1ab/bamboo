@@ -22,7 +22,8 @@ module.exports = {
 		extensions: ['.js', '.vue', '.json'],
 		alias: {
 			'vue$': 'vue/dist/vue.esm.js',
-			'@': resolve('src')
+			'@': resolve('src'),
+			styles: path.resolve(__dirname, '../src/assets/scss')
 		}
 	},
 	module: {
@@ -40,16 +41,6 @@ module.exports = {
 				test: /\.vue$/,
 				loader: 'vue-loader',
 				options: vueLoaderConfig
-			},
-			{
-				test: /\.scss$/,
-				use: [{
-					loader: "style-loader" // creates style nodes from JS strings
-				}, {
-					loader: "css-loader" // translates CSS into CommonJS
-				}, {
-					loader: "sass-loader" // compiles Sass to CSS
-				}]
 			},
 			{
 				test: /\.js$/,

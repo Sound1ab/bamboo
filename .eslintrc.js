@@ -32,6 +32,7 @@ module.exports = {
 			"exports": "never",
 			"functions": "ignore",
 		}],
-		"semi": 2
+		"semi": [2, "always"],
+		"no-useless-escape": 0,
 }
 }

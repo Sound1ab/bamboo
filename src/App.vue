@@ -1,86 +1,55 @@
 <script>
-	import Header from './components/header/header'
-	import fetch from 'isomorphic-fetch'
+	import NavBar from './components/header/navbar.vue';
+	import Header from './components/header/header';
+	import About from './components/about/about';
+	import fetch from 'isomorphic-fetch';
 
 	export default {
 		name: 'app',
 		components: {
+			NavBar,
 			Header,
+			About,
 		},
 		data () {
 			return {
 				apiResponse: [],
-			}
+			};
 		},
 		beforeCreate () {
 			fetch('//phillipparker.tech/wp-json/acf/v3/posts/')
 				.then(response => {
 					if (response.status >= 400) {
-						throw new Error('Bad response from server')
+						throw new Error('Bad response from server');
 					}
-					return response.json()
+					return response.json();
 				})
 				.then(response => {
-					this.apiResponse = response
-				})
+					this.apiResponse = response;
+				});
 		},
 		render (h) {
 			return (
 				<div class="app">
-					{this.apiResponse.length > 0 ? <Header data={this.apiResponse} /> : null}
+					{this.apiResponse.length > 0
+						? <div>
+							<NavBar data={this.apiResponse}/>
+							<Header data={this.apiResponse}/>
+							<About data={this.apiResponse}/>
+						</div> : null
+					}
 				</div>
-			)
+			);
 		},
-	}
+	};
 </script>
 
-<style>
-	html, body, div, span, applet, object, iframe,
-	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-	a, abbr, acronym, address, big, cite, code,
-	del, dfn, em, img, ins, kbd, q, s, samp,
-	small, strike, strong, sub, sup, tt, var,
-	b, u, i, center,
-	dl, dt, dd, ol, ul, li,
-	fieldset, form, label, legend,
-	table, caption, tbody, tfoot, thead, tr, th, td,
-	article, aside, canvas, details, embed,
-	figure, figcaption, footer, header, hgroup,
-	menu, nav, output, ruby, section, summary,
-	time, mark, audio, video {
-		margin: 0;
-		padding: 0;
-		border: 0;
-		font-size: 100%;
-		font: inherit;
-		vertical-align: baseline;
-	}
-	/* HTML5 display-role reset for older browsers */
-	article, aside, details, figcaption, figure,
-	footer, header, hgroup, menu, nav, section {
-		display: block;
-	}
-	body {
-		line-height: 1;
-	}
-	ol, ul {
-		list-style: none;
-	}
-	blockquote, q {
-		quotes: none;
-	}
-	blockquote:before, blockquote:after,
-	q:before, q:after {
-		content: '';
-		content: none;
-	}
-	table {
-		border-collapse: collapse;
-		border-spacing: 0;
-	}
+<style lang="scss">
+	@import "~styles/main.scss";
 
 	.app {
-		font-family: 'Avenir', Helvetica, Arial, sans-serif;
+		position: relative;
+		font-family: $ffBase;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;

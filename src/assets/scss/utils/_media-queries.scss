@@ -1,0 +1,34 @@
+$minBreakpoints: (
+  small: 767px,
+  medium: 992px,
+  large: 1200px
+);
+
+$maxBreakpoints: (
+	alpha: 1400px,
+	beta: 1200px,
+	omicron: 1000px,
+	theta: 800px,
+	zeta: 600px
+);
+
+@mixin bp($breakpoint) {
+	@if map-has-key($minBreakpoints, $breakpoint) {
+		$point: strip-units(map-get($minBreakpoints, $breakpoint)) / 16 +em;
+		@media (min-width: #{$point}) {
+		  @content;
+		}
+		.#{$breakpoint} & {
+			@content;
+		}
+	}
+	@if map-has-key($maxBreakpoints, $breakpoint) {
+	$point: strip-units(map-get($maxBreakpoints, $breakpoint)) / 16 +em;
+		@media (max-width: #{$point}) {
+			@content;
+		}
+		.#{$breakpoint} & {
+			@content;
+		}
+	}
+}
