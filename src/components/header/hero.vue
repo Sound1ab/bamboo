@@ -1,6 +1,15 @@
+<template>
+	<div class="header">
+		<div class="header__container">
+			<img class="header__logo" :src="postData.logo"/>
+		</div>
+		<h1 class="header__floating-title">{{this.postData.floating_title}}</h1>
+	</div>
+</template>
+
 <script type="text/babel">
 	export default {
-		name: 'header',
+		name: 'hero',
 		props: ['data'],
 		data () {
 			return {
@@ -8,21 +17,11 @@
 				postData: [],
 			};
 		},
-		beforeMount () {
+		created () {
 			let refinedData = this.data.filter(post => {
 				return post.id === this.id;
 			});
 			this.postData = refinedData[0].acf;
-		},
-		render (h) {
-			return (
-				<div class="header">
-					<div class="header__container">
-						<img class="header__logo" src={this.postData.logo}/>
-					</div>
-					<h1 class="header__floating-title">{this.postData.floating_title}</h1>
-				</div>
-			);
 		},
 	};
 </script>

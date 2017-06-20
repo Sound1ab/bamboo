@@ -26,7 +26,7 @@ module.exports = {
 		'no-tabs': 0,
 		'indent': [2, "tab"],
 		"comma-dangle": ["error", {
-			"arrays": "never",
+			"arrays": "always-multiline",
 			"objects": "always-multiline",
 			"imports": "never",
 			"exports": "never",

@@ -9,6 +9,7 @@ class Main {
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_script'), 10);
 	}
 
+
 	public function setup() {
 		add_theme_support('automatic-feed-links');
 		add_theme_support('title-tag');
@@ -18,7 +19,6 @@ class Main {
 	public function content_width() {
 		$GLOBALS['content_width'] = 640;
 	}
-
 
 	public function enqueue_script() {
 		global $theme_version;
@@ -55,6 +55,12 @@ class Main {
     add_filter( 'acf/rest_api/field_settings/edit_in_rest', '__return_true' );
 	}
 }
+
+
+
+
+
+
 
 class Admin {
 	public function __construct() {}

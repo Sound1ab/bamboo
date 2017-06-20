@@ -1,3 +1,14 @@
+<template>
+	<nav class="navigation">
+		<div class="navigation__logo">
+			bam boo
+		</div>
+		<ul class="navigation__menu">
+			<li class="navigation__menu-items" v-for="prop in menuData">{{prop}}</li>
+		</ul>
+	</nav>
+</template>
+
 <script type="text/babel">
 	export default {
 		name: 'header',
@@ -8,27 +19,12 @@
 				menuData: [],
 			};
 		},
-		beforeMount () {
+		created () {
 			this.data.forEach(post => {
-				console.log(post);
 				if (post.acf.navigation_item) {
 					this.menuData = [...this.menuData, post.acf.navigation_item];
 				}
 			});
-		},
-		render (h) {
-			return (
-				<nav class="navigation">
-					<div class="navigation__logo">
-						bam boo
-					</div>
-					<ul class="navigation__menu">
-						{this.menuData.map(menuItem => {
-							return <li class="navigation__menu-items">{menuItem}</li>;
-						})}
-					</ul>
-				</nav>
-			);
 		},
 	};
 </script>
