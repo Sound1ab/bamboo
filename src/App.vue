@@ -11,6 +11,7 @@
 	import hero from './components/header/hero';
 	import about from './components/about/about';
 	import location from './components/locations/locations';
+	import foodMenu from './components/menu/foodMenu';
 	import fetch from 'isomorphic-fetch';
 
 	export default {
@@ -20,6 +21,7 @@
 			hero,
 			about,
 			location,
+			foodMenu,
 		},
 		methods: {
 			fetchData () {
@@ -48,6 +50,7 @@
 					{type: 'hero'},
 					{type: 'about'},
 					{type: 'location'},
+					{type: 'foodMenu'},
 				],
 			};
 		},
